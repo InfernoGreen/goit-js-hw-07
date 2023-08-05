@@ -31,11 +31,18 @@ container.addEventListener('click', handlerProductClick)
       `);
     
       instance.show();
-
+ //  прослушивания кликов в модальном окне
       instance.element().addEventListener('click', () => instance.close());
-      // Добавляем эту строку для прослушивания кликов в модальном окне
-     }
-   
+     
 
+ // прослушиваю нажатие клавиши Esc
+         const handleEscKey = (event) => {
+          if (event.key === 'Escape') {
+            instance.close();
+            document.removeEventListener('keydown', handleEscKey);
+          }
+        };
+        document.addEventListener('keydown', handleEscKey);
+       }
 
 
