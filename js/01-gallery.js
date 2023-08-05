@@ -16,42 +16,26 @@ container.addEventListener('click', handlerProductClick)
 
 
 
-    function handlerProductClick(evt) {
-        // Проверяем, не содержит ли цель события класс 'item'
-        if (!evt.target.classList.contains('gallery__item')) {
-            return 
-        }
-        console.log('target', evt.target);
-// Добавляем обработчик события на элемент ul.gallery
-const gallery = document.querySelector('.gallery');
-gallery.addEventListener('click', openModal);
-//          const currentProduct = evt.target.closest('.js-prod-item')//closest() используется для поиска ближайшего родительского элемента, соответствующего заданному селектору CSS
-// // console.log('target', evt.target);//вывод самого эл-та
-// // console.log(currentProduct);// работа метода closest()
-// const {original} = currentProduct.dataset;
-
-
-     }
-    
-     function openModal(event) {
-        event.preventDefault();
-        if (event.target.nodeName !== "IMG") return;
-        
-        const sourceUrl = event.target.dataset.source;
-      
-        const instance = basicLightbox.create(`
-          <div class="modal">
-            <img src="${sourceUrl}" ">
-          </div>
-        `);
-      
-        instance.show();
-      }
-      
-      // Добавляем обработчик события на элемент ul.gallery
-      const gallery = document.querySelector('.gallery');
-      gallery.addEventListener('click', openModal);
+    function handlerProductClick(event) {
      
+      event.preventDefault();
+      if (event.target.nodeName !== "IMG")  return;
+      
+      const sourceUrl = event.target.dataset.source;
+     const descriptionUrl = event.target.alt;
+      const instance = basicLightbox.create(`
+        <div class="modal">
+          <img src="${sourceUrl}" alt="${descriptionUrl}">
+
+        </div>
+      `);
+    
+      instance.show();
+
+      instance.element().addEventListener('click', () => instance.close());
+      // Добавляем эту строку для прослушивания кликов в модальном окне
+     }
+   
 
 
 
