@@ -17,12 +17,12 @@ container.addEventListener('click', handlerProductClick)
 
 
     function handlerProductClick(event) {
-     
+
       event.preventDefault();
       if (event.target.nodeName !== "IMG")  return;
       
       const sourceUrl = event.target.dataset.source;
-     const descriptionUrl = event.target.alt;
+      const descriptionUrl = event.target.alt;
       const instance = basicLightbox.create(`
         <div class="modal">
           <img src="${sourceUrl}" alt="${descriptionUrl}">
@@ -33,16 +33,17 @@ container.addEventListener('click', handlerProductClick)
       instance.show();
  //  прослушивания кликов в модальном окне
       instance.element().addEventListener('click', () => instance.close());
-     
+
 
  // прослушиваю нажатие клавиши Esc
-         const handleEscKey = (event) => {
+        const handleEscKey = (event) => {
           if (event.key === 'Escape') {
             instance.close();
             document.removeEventListener('keydown', handleEscKey);
           }
         };
         document.addEventListener('keydown', handleEscKey);
-       }
+  }
+
 
 
